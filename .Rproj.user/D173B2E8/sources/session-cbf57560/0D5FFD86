@@ -1,27 +1,27 @@
 {
-    "id": "6782C8C4",
-    "path": "~/Rstudio/goc tuik/development.R",
-    "project_path": "development.R",
+    "id": "0D5FFD86",
+    "path": "~/Rstudio/goc tuik/testing.R",
+    "project_path": "testing.R",
     "type": "r_source",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1714203856713.0,
+    "created": 1714254541961.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 4,
     "properties": {
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "53,70",
-        "scrollLine": "32"
+        "cursorPosition": "10,25",
+        "scrollLine": "0"
     },
-    "folds": "12|43|18|0|\n20|48|26|0|\n",
-    "lastKnownWriteTime": 1714259100,
+    "folds": "",
+    "lastKnownWriteTime": 1714259107,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714259100244,
+    "last_content_update": 1714259107891,
     "read_only": false,
     "read_only_alternatives": []
 }

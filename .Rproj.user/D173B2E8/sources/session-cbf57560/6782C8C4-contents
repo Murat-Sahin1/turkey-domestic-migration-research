@@ -46,3 +46,19 @@ ggplot(sorted_immigration_data, aes(x = Yil_Year, y = Toplam_Total)) +
     y = "Toplam Göç"
   ) +
   theme_minimal()
+
+# Okuma yazma bilmenin yurt ici goc davranisina etkisi
+sorted_immigration_data$Okuma_yazma_bilmeyen__Illiterate <- as.numeric(sorted_immigration_data$Okuma_yazma_bilmeyen__Illiterate)
+sorted_immigration_data$Okuma_yazma_bilen_fakat_bir_okul_bitirmeyen_Literate_without_a_diploma <- as.numeric(sorted_immigration_data$Okuma_yazma_bilen_fakat_bir_okul_bitirmeyen_Literate_without_a_diploma)
+
+ggplot(sorted_immigration_data, aes(x = Yil_Year, y = Toplam_Total)) +
+  geom_bar(aes(y = Okuma_yazma_bilen_fakat_bir_okul_bitirmeyen_Literate_without_a_diploma, fill = "Okuma Yazma bilen fakat bir okul bitirmeyen"), stat = "identity", position = "stack") +
+  geom_bar(aes(y = Okuma_yazma_bilmeyen__Illiterate, fill = "Okuma yazma bilmeyen"
+), stat = "identity", position = "stack") +
+  labs(
+    title = "Stacked Bar Plot",
+    x = "Category",
+    y = "Value"
+  ) +
+  scale_fill_manual(values = c("Okuma Yazma bilen fakat bir okul bitirmeyen" = "red", "Okuma yazma bilmeyen" = "blue")) +
+  theme_minimal()
