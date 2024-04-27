@@ -3,9 +3,9 @@
     "path": "~/Rstudio/goc tuik/development.R",
     "project_path": "development.R",
     "type": "r_source",
-    "hash": "662145709",
+    "hash": "0",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1714203856713.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "13,9",
-        "scrollLine": "0"
+        "cursorPosition": "43,0",
+        "scrollLine": "34"
     },
     "folds": "",
-    "lastKnownWriteTime": 1714222501,
+    "lastKnownWriteTime": 1714225031,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714223246584,
+    "last_content_update": 1714225031744,
     "read_only": false,
     "read_only_alternatives": []
 }
