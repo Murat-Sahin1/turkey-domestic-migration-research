@@ -19,7 +19,7 @@ map_non_english <- function(input_string) {
 }
 
 replace_empty_string <- function(input_string) {
-  mapping <- c(" " = "_", "\n" = "_")
+  mapping <- c(" " = "_", "\n" = "_", "-" = "_")
   
   output_string <- chartr(paste(names(mapping), collapse = ""), paste(mapping, collapse = ""), input_string)
   
@@ -30,37 +30,19 @@ colnames(data) <- sapply(colnames(data), map_non_english)
 colnames(data) <- sapply(colnames(data), replace_empty_string)
 colnames(data)
 
-
-clean_column_names <- function(df) {
-  colnames(df) <- gsub("[^a-zA-Z0-9_]", "", colnames(df))
-  colnames(df) <- gsub(" ", "_", colnames(df))
-  return(df)
-}
-
-
-data <- clean_column_names(data)
-
-
-
-
-
-# new_column_names <- c("Yil", "Toplam_Goc", "Okuma_Yazma_Bilmeyen", "O")
-
-colnames(data) <- as.character(aciklama_satiri)
-
 # Toplam göç sayısını ifade eden tablo
-immigration_data <- data %>% filter(data$`Göç etme nedeni-Reason for migration` == "Toplam-Total")
-sorted_immigration_data <- immigration_data[order(immigration_data$`Yıl
-Year`), ]
+immigration_data <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Toplam-Total")
+sorted_immigration_data <- immigration_data[order(immigration_data$Yil_Year), ]
+
 immigration_data
 sorted_immigration_data
 
-# Plotting
-ggplot(data, aes(x = Category, y = Value)) +
+# 4 yillik surecteki toplam goc, bar plot
+ggplot(sorted_immigration_data, aes(x = Yil_Year, y = Toplam_Total)) +
   geom_bar(stat = "identity", fill = "blue") +
   labs(
-    title = "Basic Bar Plot",
-    x = "Category",
-    y = "Value"
+    title = "Toplam Yurtiçi Göç",
+    x = "Yıllar",
+    y = "Toplam Göç"
   ) +
   theme_minimal()
