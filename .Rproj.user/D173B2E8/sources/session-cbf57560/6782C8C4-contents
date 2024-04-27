@@ -10,16 +10,16 @@ colnames(data) <- as.character(aciklama_satiri)
 
 # Toplam göç sayısını ifade eden tablo
 immigration_data <- data %>% filter(data$`Göç etme nedeni-Reason for migration` == "Toplam-Total")
-toplam_goc <- as.numeric(immigration_data$`Toplam
-Total`)
-yillar <- as.numeric(immigration_data$`Yıl
-Year`)
-sirali_yillar <- sort(yillar)
+sorted_immigration_data <- immigration_data[order(immigration_data$`Yıl
+Year`), ]
 
-# Create bar plot
-barplot(toplam_goc, 
-        names.arg = yillar, 
-        col = "blue", 
-        main = "Toplam Yurtiçi Göç", 
-        xlab = "Yıllar", 
-        ylab = "Toplam göç")
+# Plotting
+ggplot(immigration_data, aes(x = "`Yıl Year`", y = "`Toplam Total`")) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(
+    title = "Total Immigration Over Years",
+    x = "Year",
+    y = "Total Immigration"
+  ) +
+  theme_minimal() +
+  scale_x_discrete(labels = immigration_data$"Yıl Year"[order(immigration_data$"Yıl Year")])
