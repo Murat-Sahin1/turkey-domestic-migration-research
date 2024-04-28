@@ -82,6 +82,9 @@ ggplot(sorted_immigration_data, aes(x = Yil_Year, y = Toplam_Total)) +
   scale_fill_manual(values = c("Okuma Yazma bilen fakat bir okul bitirmeyen" = "red", "Okuma yazma bilmeyen" = "blue")) +
   theme_minimal()
 
+# Goc etme nedenlerine göre analizler
+data$Goc_etme_nedeni_Reason_for_migration
+
 # Konut alma nedeni ile goc ve egitim seviyesinin iliskisi
 konut_alma_nedeni_ile_goc <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Ev alınması-Buying a house")
 years <- c(2022, 2021, 2020, 2019, 2018)
@@ -94,9 +97,86 @@ ggplot(data = konut_alma_nedeni_ile_goc, aes(x = Yil_Year)) +
   geom_line(aes(y = Ilkokul_Primary_school, color = "İlk okul")) +
   geom_line(aes(y = Lise_veya_dengi_okul_Upper_secondary_school, color = "Lise")) +
   geom_line(aes(y = Yuksekogretim_Higher_education, color = "Yükseköğretim")) +
-  labs(title = "Konut alımı sebebi ile yurt içi göçün eğitim seviyesi ile ilişkisi",
+  labs(title = "Konut alımı sebebiyle yurt içi göçün eğitim seviyesi ile ilişkisi",
        x = "Yıllar",
        y = "Toplam Göç",
        color = "Eğitim Seviyesi") +
   scale_color_manual(values = c("İlk okul" = "blue", "Lise" = "red", "Yükseköğretim" = "green")) +
   theme_minimal()
+
+# Aile fertlerinden birine bağımlı göç ve egitim seviyesinin iliskisi
+aile_fertlerine_bagimli_goc <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Hane / aile fertlerinden birine bağımlı göç\nMigration related to any member of the household / family")
+years <- c(2022, 2021, 2020, 2019, 2018)
+aile_fertlerine_bagimli_goc$Yil_Year <- years
+kategorik_sutunlar <- c("Goc_etme_nedeni_Reason_for_migration")
+aile_fertlerine_bagimli_goc <- aile_fertlerine_bagimli_goc[, !colnames(aile_fertlerine_bagimli_goc) %in% kategorik_sutunlar]
+str(konut_alma_nedeni_ile_goc)
+
+ggplot(data = aile_fertlerine_bagimli_goc, aes(x = Yil_Year)) +
+  geom_line(aes(y = Ilkokul_Primary_school, color = "İlk okul")) +
+  geom_line(aes(y = Lise_veya_dengi_okul_Upper_secondary_school, color = "Lise")) +
+  geom_line(aes(y = Yuksekogretim_Higher_education, color = "Yükseköğretim")) +
+  labs(title = "Aile fertlerinden birine bağımlı yurt içi göçün eğitim seviyesi ile ilişkisi",
+       x = "Yıllar",
+       y = "Toplam Göç",
+       color = "Eğitim Seviyesi") +
+  scale_color_manual(values = c("İlk okul" = "blue", "Lise" = "red", "Yükseköğretim" = "green")) +
+  theme_minimal()
+
+# Medeni duruma bağımlı göç ve egitim seviyesinin iliskisi
+medeni_duruma_bagimli_goc <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Medeni durum değişikliği / ailevi nedenler\nChange of marital status / family-related reasons")
+years <- c(2022, 2021, 2020, 2019, 2018)
+medeni_duruma_bagimli_goc$Yil_Year <- years
+kategorik_sutunlar <- c("Goc_etme_nedeni_Reason_for_migration")
+medeni_duruma_bagimli_goc <- medeni_duruma_bagimli_goc[, !colnames(medeni_duruma_bagimli_goc) %in% kategorik_sutunlar]
+str(medeni_duruma_bagimli_goc)
+
+ggplot(data = medeni_duruma_bagimli_goc, aes(x = Yil_Year)) +
+  geom_line(aes(y = Ilkokul_Primary_school, color = "İlk okul")) +
+  geom_line(aes(y = Lise_veya_dengi_okul_Upper_secondary_school, color = "Lise")) +
+  geom_line(aes(y = Yuksekogretim_Higher_education, color = "Yükseköğretim")) +
+  labs(title = "Medeni durum değişikliğine bağımlı göç ve egitim seviyesinin ilişkisi",
+       x = "Yıllar",
+       y = "Toplam Göç",
+       color = "Eğitim Seviyesi") +
+  scale_color_manual(values = c("İlk okul" = "blue", "Lise" = "red", "Yükseköğretim" = "green")) +
+  theme_minimal()
+
+# Aile yanına dönme nedeni ile göç ve egitim seviyesinin iliskisi
+aile_yanina_donme <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Aile yanına / memlekete geri dönme\nReturning to family home / hometown")
+years <- c(2022, 2021, 2020, 2019, 2018)
+aile_yanina_donme$Yil_Year <- years
+kategorik_sutunlar <- c("Goc_etme_nedeni_Reason_for_migration")
+aile_yanina_donme <- aile_yanina_donme[, !colnames(aile_yanina_donme) %in% kategorik_sutunlar]
+str(aile_yanina_donme)
+
+ggplot(data = aile_yanina_donme, aes(x = Yil_Year)) +
+  geom_line(aes(y = Ilkokul_Primary_school, color = "İlk okul")) +
+  geom_line(aes(y = Lise_veya_dengi_okul_Upper_secondary_school, color = "Lise")) +
+  geom_line(aes(y = Yuksekogretim_Higher_education, color = "Yükseköğretim")) +
+  labs(title = "Aile evine dönme sebebi ile göç ve egitim seviyesinin ilişkisi",
+       x = "Yıllar",
+       y = "Toplam Göç",
+       color = "Eğitim Seviyesi") +
+  scale_color_manual(values = c("İlk okul" = "blue", "Lise" = "red", "Yükseköğretim" = "green")) +
+  theme_minimal()
+
+# Emeklilik sebebi ile göç ve eğitim seviyesinin ilişkisi
+emeklilik_nedeni_ile_goc <- data %>% filter(data$Goc_etme_nedeni_Reason_for_migration == "Emeklilik-Retirement")
+years <- c(2022, 2021, 2020, 2019, 2018)
+emeklilik_nedeni_ile_goc$Yil_Year <- years
+kategorik_sutunlar <- c("Goc_etme_nedeni_Reason_for_migration")
+emeklilik_nedeni_ile_goc <- emeklilik_nedeni_ile_goc[, !colnames(emeklilik_nedeni_ile_goc) %in% kategorik_sutunlar]
+str(emeklilik_nedeni_ile_goc)
+
+ggplot(data = emeklilik_nedeni_ile_goc, aes(x = Yil_Year)) +
+  geom_line(aes(y = Ilkokul_Primary_school, color = "İlk okul")) +
+  geom_line(aes(y = Lise_veya_dengi_okul_Upper_secondary_school, color = "Lise")) +
+  geom_line(aes(y = Yuksekogretim_Higher_education, color = "Yükseköğretim")) +
+  labs(title = "Aile evine dönme sebebi ile göç ve egitim seviyesinin ilişkisi",
+       x = "Yıllar",
+       y = "Toplam Göç",
+       color = "Eğitim Seviyesi") +
+  scale_color_manual(values = c("İlk okul" = "blue", "Lise" = "red", "Yükseköğretim" = "green")) +
+  theme_minimal()
+
